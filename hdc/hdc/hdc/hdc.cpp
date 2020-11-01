@@ -272,9 +272,7 @@ int commandLineApplication(int argc, char** argv)
         cout << "No documentation at this time, please provide arguments.\n";
     }
     else if (argc == 2)
-    { // assume argv is a filename,
-        cout << argv[1] << "\n";
-
+    { 
         ifstream file(argv[1]); // read data from text file
         if (file.is_open())
         {
