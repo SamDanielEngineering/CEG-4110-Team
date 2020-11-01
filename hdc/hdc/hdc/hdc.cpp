@@ -258,8 +258,8 @@ void resetValues()
 {
     name = gender = "";
     age = temperature = social = respirationRate = bloodPressureDiastolic = bloodPressureSystolic = pulseRate = 255;
-    currentHealthConditions[0] = 0;
-    healthHistory[0] = 0;
+    currentHealthConditions.clear();
+    healthHistory.clear();
 };
 
 int commandLineApplication(int argc, char** argv)
@@ -272,7 +272,7 @@ int commandLineApplication(int argc, char** argv)
         cout << "No documentation at this time, please provide arguments.\n";
     }
     else if (argc == 2)
-    { 
+    {
         ifstream file(argv[1]); // read data from text file
         if (file.is_open())
         {
