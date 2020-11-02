@@ -18,10 +18,18 @@
     <ClCompile Include="hdc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HideData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt">
       <Filter>Source Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HideData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
