@@ -4,6 +4,8 @@
 
 #include <fstream>
 
+#include "HideData.h"
+
 using namespace std;
 
 string name, gender;
@@ -264,7 +266,7 @@ void resetValues()
 
 int commandLineApplication(int argc, char** argv)
 {
-
+    cout << "num from hidedata" << HideData::getValue(); //placeholder
     if (argc == 1)
     {
         cout << "**** HideData ****\n";

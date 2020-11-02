@@ -1,5 +1,5 @@
 #pragma once
-class HideData
-{
-};
+namespace HideData {
+	int HideData::getValue();//place holder
+}
 
