@@ -8,9 +8,9 @@ void tests::checks(hosData record) {
     
         cout << "*** Running Checks ***"
             "\n";
-        if (!record.name.empty())
+        if (!record.name().empty())
         {
-            cout << "name: " << record.name << "\n";
+            cout << "name: " << record.name() << "\n";
         }
         else
         {
@@ -18,9 +18,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.age != 255)
+        if (record.age() != 255)
         {
-            cout << "age: " << (unsigned)record.age << "\n";
+            cout << "age: " << (unsigned)record.age() << "\n";
         }
         else
         {
@@ -28,9 +28,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.social < 1000000000)
+        if (record.social() < 1000000000)
         {
-            cout << "social: " << (unsigned)record.social << "\n";
+            cout << "social: " << (unsigned)record.social() << "\n";
         }
         else
         {
@@ -38,9 +38,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (!record.gender.empty())
+        if (!record.gender().empty())
         {
-            cout << "gender: " << record.gender << "\n";
+            cout << "gender: " << record.gender() << "\n";
         }
         else
         {
@@ -48,9 +48,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.temperature != 255)
+        if (record.temperature() != 255)
         {
-            cout << "temperature: " << (unsigned)record.temperature << "\n";
+            cout << "temperature: " << (unsigned)record.temperature() << "\n";
         }
         else
         {
@@ -58,9 +58,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.pulseRate != 255)
+        if (record.pulseRate() != 255)
         {
-            cout << "pulseRate: " << (unsigned)record.pulseRate << "\n";
+            cout << "pulseRate: " << (unsigned)record.pulseRate() << "\n";
         }
         else
         {
@@ -68,9 +68,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.respirationRate != 255)
+        if (record.respirationRate() != 255)
         {
-            cout << "respirationRate: " << (unsigned)record.respirationRate << "\n";
+            cout << "respirationRate: " << (unsigned)record.respirationRate() << "\n";
         }
         else
         {
@@ -78,9 +78,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.bloodPressureSystolic != 255)
+        if (record.bloodPressureSystolic() != 255)
         {
-            cout << "bloodPressureSystolic: " << (unsigned)record.bloodPressureSystolic << "\n";
+            cout << "bloodPressureSystolic: " << (unsigned)record.bloodPressureSystolic() << "\n";
         }
         else
         {
@@ -88,9 +88,9 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (record.bloodPressureDiastolic != 255)
+        if (record.bloodPressureDiastolic() != 255)
         {
-            cout << "bloodPressureDiastolic: " << (unsigned)record.bloodPressureDiastolic << "\n";
+            cout << "bloodPressureDiastolic: " << (unsigned)record.bloodPressureDiastolic() << "\n";
         }
         else
         {
@@ -98,10 +98,10 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (size(record.healthHistory) != 0)
+        if (size(record.healthHistory()) != 0)
         {
             cout << "healthHistory: ";
-            for (auto i : record.healthHistory) {
+            for (auto i : record.healthHistory()) {
                 std::cout << (unsigned)i << ' ';
             }
 
@@ -113,10 +113,10 @@ void tests::checks(hosData record) {
                 << "\n";
         }
 
-        if (size(record.currentHealthConditions) != 0)
+        if (size(record.currentHealthConditions()) != 0)
         {
             cout << "currentHealthConditions: ";
-            for (auto i : record.currentHealthConditions) {
+            for (auto i : record.currentHealthConditions()) {
                 std::cout << (unsigned)i << ' ';
             }
             cout << endl;

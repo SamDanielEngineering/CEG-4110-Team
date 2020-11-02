@@ -88,37 +88,37 @@ string runOption(string str)
     switch (option)
     {
     case Option::name:
-        record.name = value;
+        record.name(value);
         break;
     case Option::age:
-        record.age = stoi(value, nullptr, 10);
+        record.age( stoi(value, nullptr, 10));
         break;
     case Option::social:
-        record.social = stoi(value, nullptr, 10);
+        record.social(stoi(value, nullptr, 10));
         break;
     case Option::gender:
-        record.gender = value;
+        record.gender(value);
         break;
     case Option::temperature:
-        record.temperature = stoi(value, nullptr, 10);
+        record.temperature(stoi(value, nullptr, 10));
         break;
     case Option::pulseRate:
-        record.pulseRate = stoi(value, nullptr, 10);
+        record.pulseRate(stoi(value, nullptr, 10));
         break;
     case Option::respirationRate:
-        record.respirationRate = stoi(value, nullptr, 10);
+        record.respirationRate(stoi(value, nullptr, 10));
         break;
     case Option::bloodPressureSystolic: //
-        record.bloodPressureSystolic = stoi(value, nullptr, 10);
+        record.bloodPressureSystolic(stoi(value, nullptr, 10));
         break;
     case Option::bloodPressureDiastolic: //
-        record.bloodPressureDiastolic = stoi(value, nullptr, 10);
+        record.bloodPressureDiastolic(stoi(value, nullptr, 10));
         break;
     case Option::healthHistory:
-        record.healthHistory = getHistory(value);
+        record.healthHistory(getHistory(value));
         break;
     case Option::currentHealthConditions:
-        record.currentHealthConditions = getHistory(value);
+        record.currentHealthConditions(getHistory(value));
         break;
     default:
         cout << "not valid option:\n";
@@ -131,10 +131,7 @@ string runOption(string str)
 
 void resetValues()
 {
-    record.name = record.gender = "";
-    record.age = record.temperature = record.social = record.respirationRate = record.bloodPressureDiastolic = record.bloodPressureSystolic = record.pulseRate = 255;
-    record.currentHealthConditions.clear();
-    record.healthHistory.clear();
+    record.clear();
 };
 
 int commandLineApplication(int argc, char** argv)
