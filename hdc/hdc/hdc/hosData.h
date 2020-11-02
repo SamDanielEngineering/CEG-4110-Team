@@ -13,4 +13,6 @@ struct hosData
 	std::vector<uint8_t> currentHealthConditions, healthHistory;
 };
 
+
+
 #endif  // HDC_TESTS_H_

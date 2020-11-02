@@ -55,6 +55,7 @@ Option getOption(string str)
     return Option::undefined;
 }
 
+// reads string and returns vector of uint8_t that represent history
 vector<uint8_t> getHistory(string str)
 {
     vector<uint8_t> v;
@@ -69,7 +70,7 @@ vector<uint8_t> getHistory(string str)
     return v;
 }
 
-// This is a simple method for using switch statement with strings in C++. For an optimazed method, using constexpr to hash the string maybe preferred.
+// parses string and sets value of first option, return rest of string. 
 string runOption(string str)
 { // does one option at a time and returns
     smatch match;
