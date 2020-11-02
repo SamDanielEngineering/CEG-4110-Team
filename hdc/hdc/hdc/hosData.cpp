@@ -3,18 +3,18 @@
 
 bool hosData::validate() {
 
-	return false; // placeholder
+    return false; // placeholder
 };
 void hosData::clear() {
-    _name="";
-    _gender="";
-    _age=255;
-    _temperature=255;
-    _social=255;
-    _respirationRate=255;
-    _bloodPressureDiastolic=255;
-    _bloodPressureSystolic=255;
-    _pulseRate=255;
+    _name = "";
+    _gender = "";
+    _age = 255;
+    _temperature = 255;
+    _social = 255;
+    _respirationRate = 255;
+    _bloodPressureDiastolic = 255;
+    _bloodPressureSystolic = 255;
+    _pulseRate = 255;
     _currentHealthConditions.clear();
     _healthHistory.clear();
 };
@@ -37,7 +37,7 @@ uint8_t hosData::pulseRate() { return _pulseRate; };
 void hosData::pulseRate(uint8_t newPulseRate) { _pulseRate = newPulseRate; };
 uint32_t hosData::social() { return _social; };
 void hosData::social(uint32_t newSocial) { _social = newSocial; };
-std::vector<uint8_t> hosData::currentHealthConditions() {return _currentHealthConditions;};
-void hosData::currentHealthConditions(std::vector<uint8_t> NewCurrentHealthConditions) {_currentHealthConditions = NewCurrentHealthConditions;};
+std::vector<uint8_t> hosData::currentHealthConditions() { return _currentHealthConditions; };
+void hosData::currentHealthConditions(std::vector<uint8_t> NewCurrentHealthConditions) { _currentHealthConditions = NewCurrentHealthConditions; };
 std::vector<uint8_t> hosData::healthHistory() { return _healthHistory; };
-void hosData::healthHistory(std::vector<uint8_t> newHealthHistory) { _healthHistory= newHealthHistory; };
+void hosData::healthHistory(std::vector<uint8_t> newHealthHistory) { _healthHistory = newHealthHistory; };

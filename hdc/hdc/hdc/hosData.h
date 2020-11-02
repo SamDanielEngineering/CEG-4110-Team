@@ -17,13 +17,13 @@ public:
 	void name(std::string newName);
 	std::string gender();
 	void gender(std::string newGender);
-	uint8_t age(); 
+	uint8_t age();
 	void age(uint8_t newAge);
-	uint8_t temperature(); 
+	uint8_t temperature();
 	void temperature(uint8_t newTemperature);
-	uint8_t respirationRate(); 
+	uint8_t respirationRate();
 	void respirationRate(uint8_t newRespirationRate);
-	uint8_t bloodPressureSystolic(); 
+	uint8_t bloodPressureSystolic();
 	void bloodPressureSystolic(uint8_t newBloodPressureSystolic);
 	uint8_t bloodPressureDiastolic();
 	void bloodPressureDiastolic(uint8_t newBloodPressureDiastolic);
