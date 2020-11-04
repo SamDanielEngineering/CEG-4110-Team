@@ -18,7 +18,10 @@
     <ClCompile Include="hdc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HideData.cpp">
+    <ClCompile Include="tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hosData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,7 +31,10 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HideData.h">
+    <ClInclude Include="tests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hosData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

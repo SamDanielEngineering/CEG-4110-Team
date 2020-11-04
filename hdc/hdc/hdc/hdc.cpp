@@ -1,17 +1,16 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <regex>
 
 #include <fstream>
+#include "hosData.h"
+#include "tests.h"
 
 #include "HideData.h"
 
 using namespace std;
 
-string name, gender;
-uint8_t age, temperature, respirationRate, bloodPressureSystolic, bloodPressureDiastolic, pulseRate;
-uint32_t social;
-vector<uint8_t> currentHealthConditions, healthHistory;
+hosData record;
 
 enum class Option
 {
@@ -58,6 +57,7 @@ Option getOption(string str)
     return Option::undefined;
 }
 
+// reads string and returns vector of uint8_t that represent history
 vector<uint8_t> getHistory(string str)
 {
     vector<uint8_t> v;
@@ -72,7 +72,7 @@ vector<uint8_t> getHistory(string str)
     return v;
 }
 
-// This is a simple method for using switch statement with strings in C++. For an optimazed method, using constexpr to hash the string maybe preferred.
+// parses string and sets value of first option, return rest of string. 
 string runOption(string str)
 { // does one option at a time and returns
     smatch match;
@@ -90,37 +90,37 @@ string runOption(string str)
     switch (option)
     {
     case Option::name:
-        name = value;
+        record.name(value);
         break;
     case Option::age:
-        age = stoi(value, nullptr, 10);
+        record.age( stoi(value, nullptr, 10));
         break;
     case Option::social:
-        social = stoi(value, nullptr, 10);
+        record.social(stoi(value, nullptr, 10));
         break;
     case Option::gender:
-        gender = value;
+        record.gender(value);
         break;
     case Option::temperature:
-        temperature = stoi(value, nullptr, 10);
+        record.temperature(stoi(value, nullptr, 10));
         break;
     case Option::pulseRate:
-        pulseRate = stoi(value, nullptr, 10);
+        record.pulseRate(stoi(value, nullptr, 10));
         break;
     case Option::respirationRate:
-        respirationRate = stoi(value, nullptr, 10);
+        record.respirationRate(stoi(value, nullptr, 10));
         break;
     case Option::bloodPressureSystolic: //
-        bloodPressureSystolic = stoi(value, nullptr, 10);
+        record.bloodPressureSystolic(stoi(value, nullptr, 10));
         break;
     case Option::bloodPressureDiastolic: //
-        bloodPressureDiastolic = stoi(value, nullptr, 10);
+        record.bloodPressureDiastolic(stoi(value, nullptr, 10));
         break;
     case Option::healthHistory:
-        healthHistory = getHistory(value);
+        record.healthHistory(getHistory(value));
         break;
     case Option::currentHealthConditions:
-        currentHealthConditions = getHistory(value);
+        record.currentHealthConditions(getHistory(value));
         break;
     default:
         cout << "not valid option:\n";
@@ -130,138 +130,10 @@ string runOption(string str)
     return str; // returns string without consumed option and value
 }
 
-// For testing, prints out current values
-void checks()
-{
-    cout << "*** Running Checks ***"
-        "\n";
-    if (!name.empty())
-    {
-        cout << "name: " << name << "\n";
-    }
-    else
-    {
-        cout << "name not set"
-            << "\n";
-    }
-
-    if (age != 255)
-    {
-        cout << "age: " << (unsigned)age << "\n";
-    }
-    else
-    {
-        cout << "age not set"
-            << "\n";
-    }
-
-    if (social < 1000000000)
-    {
-        cout << "social: " << (unsigned)social << "\n";
-    }
-    else
-    {
-        cout << "social not set"
-            << "\n";
-    }
-
-    if (!gender.empty())
-    {
-        cout << "gender: " << gender << "\n";
-    }
-    else
-    {
-        cout << "gender not set"
-            << "\n";
-    }
-
-    if (temperature != 255)
-    {
-        cout << "temperature: " << (unsigned)temperature << "\n";
-    }
-    else
-    {
-        cout << "temperature not set"
-            << "\n";
-    }
-
-    if (pulseRate != 255)
-    {
-        cout << "pulseRate: " << (unsigned)pulseRate << "\n";
-    }
-    else
-    {
-        cout << "pulseRate not set"
-            << "\n";
-    }
-
-    if (respirationRate != 255)
-    {
-        cout << "respirationRate: " << (unsigned)respirationRate << "\n";
-    }
-    else
-    {
-        cout << "respirationRate not set"
-            << "\n";
-    }
-
-    if (bloodPressureSystolic != 255)
-    {
-        cout << "bloodPressureSystolic: " << (unsigned)bloodPressureSystolic << "\n";
-    }
-    else
-    {
-        cout << "bloodPressureSystolic not set"
-            << "\n";
-    }
-
-    if (bloodPressureDiastolic != 255)
-    {
-        cout << "bloodPressureDiastolic: " << (unsigned)bloodPressureDiastolic << "\n";
-    }
-    else
-    {
-        cout << "bloodPressureDiastolic not set"
-            << "\n";
-    }
-
-    if (size(healthHistory) != 0)
-    {
-        cout << "healthHistory: ";
-        for (auto i : healthHistory) {
-            std::cout << (unsigned)i << ' ';
-        }
-
-        cout << endl;
-    }
-    else
-    {
-        cout << "healthHistory not set"
-            << "\n";
-    }
-
-    if (size(currentHealthConditions) != 0)
-    {
-        cout << "currentHealthConditions: ";
-        for (auto i : currentHealthConditions) {
-            std::cout << (unsigned)i << ' ';
-        }
-        cout << endl;
-
-    }
-    else
-    {
-        cout << "currentHealthConditions not set"
-            << "\n";
-    }
-}
 
 void resetValues()
 {
-    name = gender = "";
-    age = temperature = social = respirationRate = bloodPressureDiastolic = bloodPressureSystolic = pulseRate = 255;
-    currentHealthConditions.clear();
-    healthHistory.clear();
+    record.clear();
 };
 
 int commandLineApplication(int argc, char** argv)
@@ -282,12 +154,11 @@ int commandLineApplication(int argc, char** argv)
             while (std::getline(file, line))
             {
                 string currentLine = line.c_str();
-
                 while (currentLine != "")
                 {
                     currentLine = runOption(currentLine);
                 }
-                checks();
+                tests::checks(record);
                 resetValues();
             }
             file.close();
