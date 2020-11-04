@@ -1,6 +1,5 @@
 #include "hosData.h"
 
-
 bool hosData::validate() {
 
     return false; // placeholder

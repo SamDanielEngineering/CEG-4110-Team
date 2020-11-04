@@ -4,5 +4,11 @@
     <LocalDebuggerCommand>$(TargetPath)</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>"$(ProjectDir)/data.txt"</LocalDebuggerCommandArguments>
+    <LocalDebuggerEnvironment>PATH=$(SolutionDir)bin\;%PATH%</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommandArguments>"$(ProjectDir)/data.txt"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerEnvironment>PATH=$(SolutionDir)bin\;%PATH%</LocalDebuggerEnvironment>
   </PropertyGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include <regex>
 
 #include <fstream>
+#include <opencv2/opencv.hpp>
+
 #include "hosData.h"
 #include "tests.h"
 
@@ -177,5 +179,14 @@ int commandLineApplication(int argc, char** argv)
 int main(int argc, char** argv)
 {
     commandLineApplication(argc, argv);
+
+//Example to show openv works 
+//   cv::Mat image = cv::imread("../image.jpg", cv::IMREAD_COLOR);
+//   if (!image.empty()) {
+//       cv::imshow("", image);
+//   }
+//   else { cout << "Image not found"; }
+//   int k = cv::waitKey(0); // Wait for a keystroke in the window
+
     return 0;
 }
