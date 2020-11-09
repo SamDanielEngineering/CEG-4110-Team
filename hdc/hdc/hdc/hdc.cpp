@@ -6,7 +6,6 @@
 #include "hosData.h"
 #include "tests.h"
 
-#include "HideData.h"
 
 using namespace std;
 
@@ -138,7 +137,6 @@ void resetValues()
 
 int commandLineApplication(int argc, char** argv)
 {
-    cout << "num from hidedata" << HideData::getValue(); //placeholder
     if (argc == 1)
     {
         cout << "**** HideData ****\n";
