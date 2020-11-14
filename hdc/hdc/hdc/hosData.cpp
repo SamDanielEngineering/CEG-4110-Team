@@ -1,5 +1,31 @@
 #include "hosData.h"
 
+
+hosData::hosData() {
+
+}
+
+hosData::hosData(std::string name, std::string gender, uint8_t age, uint32_t social) {
+    this->name(name);
+    this->gender(gender);
+    this->age(age);
+    this->social(social);
+};
+
+hosData::hosData(std::string name, std::string gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, std::vector<uint8_t> currentHealthConditions, std::vector<uint8_t> healthHistory) {
+    this->name(name);
+    this->gender(gender);
+    this->age(age);
+    this->temperature(temperature);
+    this->respirationRate(respirationRate);
+    this->bloodPressureSystolic(bloodPressureSystolic);
+    this->bloodPressureDiastolic(bloodPressureDiastolic);
+    this->pulseRate(pulseRate);
+    this->social(social);
+    this->currentHealthConditions(currentHealthConditions);
+    this->healthHistory(healthHistory);
+};
+
 bool hosData::validate() {
 
     return false; // placeholder

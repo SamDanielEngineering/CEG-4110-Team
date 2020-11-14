@@ -13,6 +13,9 @@ private:
 	uint32_t _social;
 	std::vector<uint8_t> _currentHealthConditions, _healthHistory;
 public:
+	hosData();
+	hosData(std::string name, std::string gender, uint8_t age, uint32_t social);
+	hosData(std::string name, std::string gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, std::vector<uint8_t> currentHealthConditions, std::vector<uint8_t> healthHistory);
 	std::string name();
 	void name(std::string newName);
 	std::string gender();
