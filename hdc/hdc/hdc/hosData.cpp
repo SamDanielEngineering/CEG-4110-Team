@@ -2,7 +2,7 @@
 
 
 hosData::hosData() {
-
+    this->clear();
 }
 
 hosData::hosData(std::string name, std::string gender, uint8_t age, uint32_t social) {
@@ -27,9 +27,29 @@ hosData::hosData(std::string name, std::string gender, uint8_t age, uint32_t soc
 };
 
 bool hosData::validate() {
+    bool val = true;
+    //check name
+    if (name().empty())
+    {
+        printf("Error: Name value is empty.\n");
+        val = false;
+    }else if(gender().empty()) //check gender
+    {
+        printf("Error: Gender value is empty.\n");
+        val = false;
+    }else if (age() == NULL || age() == 255) //check age
+    {
+        printf("Error: Age value is empty.\n");
+        val = false;
+    }else if (social() == NULL || social() == 255) //check social
+    {
+        printf("Error: Social value is empty.\n");
+        val = false;
+    }
 
-    return false; // placeholder
+    return val;
 };
+
 void hosData::clear() {
     _name = "";
     _gender = "";
