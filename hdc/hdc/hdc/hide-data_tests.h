@@ -5,6 +5,7 @@
 
 namespace hide_data_tests
 {
+
 	void checks(PatientMedicalData record);
 };
 

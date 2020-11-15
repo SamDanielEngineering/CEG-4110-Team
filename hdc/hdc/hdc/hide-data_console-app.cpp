@@ -6,6 +6,7 @@
 #include <opencv2/opencv.hpp>
 
 #include "patient_medical_data.h"
+#include "hide-data.h"
 #include "hide-data_tests.h"
 
 using namespace std;
@@ -177,17 +178,25 @@ int HideDataConsoleApp(int argc, char** argv)
     return 0;
 }
 
+void HideDataTests() {
+    cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
+    PatientMedicalData patient = PatientMedicalData("First Last", "M", 22, 0);
+    cv::Mat image = hide_data::encode(patient, targetImage);
+    PatientMedicalData decodedPatient = hide_data::decode(image);
+    cout << decodedPatient.name() << "\n";
+    decodedPatient.validate();
+    if (!image.empty()) {
+        cv::imshow("", image);
+    }
+    else { cout << "Image not found"; }
+    int k = cv::waitKey(0); // Wait for any keystroke in the window    
+}
+
 int main(int argc, char** argv)
 {
-    HideDataConsoleApp(argc, argv);
+    //HideDataConsoleApp(argc, argv);
 
-//Example to show openv works 
-   //cv::Mat image = cv::imread("../image.jpg", cv::IMREAD_COLOR);
-   //if (!image.empty()) {
-   //    cv::imshow("", image);
-   //}
-   //else { cout << "Image not found"; }
-   //int k = cv::waitKey(0); // Wait for any keystroke in the window
+    HideDataTests();
 
     return 0;
 }

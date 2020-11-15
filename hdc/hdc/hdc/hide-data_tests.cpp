@@ -3,7 +3,8 @@
 #include <iostream>
 
 using namespace std;
-// For testing, prints out current values
+
+
 void hide_data_tests::checks(PatientMedicalData record) {
 
     cout << "*** Running Checks ***"
