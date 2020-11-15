@@ -15,13 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hdc.cpp">
+    <ClCompile Include="patient_medical_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests.cpp">
+    <ClCompile Include="hide-data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hosData.cpp">
+    <ClCompile Include="hide-data_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hide-data_console-app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31,10 +34,13 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tests.h">
+    <ClInclude Include="patient_medical_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hosData.h">
+    <ClInclude Include="hide-data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hide-data_tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

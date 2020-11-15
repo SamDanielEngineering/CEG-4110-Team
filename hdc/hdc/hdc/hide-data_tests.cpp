@@ -1,10 +1,10 @@
-#include "tests.h"
+#include "hide-data_tests.h"
 
 #include <iostream>
 
 using namespace std;
 // For testing, prints out current values
-void tests::checks(hosData record) {
+void hide_data_tests::checks(PatientMedicalData record) {
 
     cout << "*** Running Checks ***"
         "\n";

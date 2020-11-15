@@ -5,12 +5,12 @@
 #include <fstream>
 #include <opencv2/opencv.hpp>
 
-#include "hosData.h"
-#include "tests.h"
+#include "patient_medical_data.h"
+#include "hide-data_tests.h"
 
 using namespace std;
 
-hosData record;
+PatientMedicalData record;
 
 enum class Option
 {
@@ -136,7 +136,7 @@ void resetValues()
     record.clear();
 };
 
-int commandLineApplication(int argc, char** argv)
+int HideDataConsoleApp(int argc, char** argv)
 {
 
     if (argc == 1)
@@ -158,7 +158,8 @@ int commandLineApplication(int argc, char** argv)
                 {
                     currentLine = runOption(currentLine);
                 }
-                tests::checks(record);
+                hide_data_tests::checks(record);
+                record.validate();
                 resetValues();
             }
             file.close();
@@ -178,9 +179,9 @@ int commandLineApplication(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-    commandLineApplication(argc, argv);
+    HideDataConsoleApp(argc, argv);
 
-////Example to show openv works 
+//Example to show openv works 
    //cv::Mat image = cv::imread("../image.jpg", cv::IMREAD_COLOR);
    //if (!image.empty()) {
    //    cv::imshow("", image);

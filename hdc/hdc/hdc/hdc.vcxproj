@@ -146,16 +146,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="hdc.cpp" />
-    <ClCompile Include="hosData.cpp" />
-    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="hide-data_console-app.cpp" />
+    <ClCompile Include="hide-data.cpp" />
+    <ClCompile Include="patient_medical_data.cpp" />
+    <ClCompile Include="hide-data_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hosData.h" />
-    <ClInclude Include="tests.h" />
+    <ClInclude Include="hide-data.h" />
+    <ClInclude Include="patient_medical_data.h" />
+    <ClInclude Include="hide-data_tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
