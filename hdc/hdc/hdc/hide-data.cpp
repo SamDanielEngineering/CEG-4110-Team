@@ -7,26 +7,42 @@
 
 using namespace std;
 
-void encodePixels(uint8_t data, cv::Mat targetImage, int x, int y) {
+void encodePixels8(uint8_t data, cv::Mat targetImage, int x, int y) {
 	uint8_t mask = 1;
 	for (int i = 0; i < 8; i++) {
 		targetImage.at<uchar>(x+i, y) = ((targetImage.at<uchar>(x + i, y) & ~mask) | (data & mask));
 		data = data >> 1;
 	}
 
+};//uint32_t
+
+void encodePixels32(uint32_t data, cv::Mat targetImage, int x, int y) {
+	uint32_t mask = 1;
+	for (int i = 0; i < 32; i++) {
+		targetImage.at<uchar>(x + i, y) = ((targetImage.at<uchar>(x + i, y) & ~mask) | (data & mask));
+		data = data >> 1;
+	}
+
+};//uint32_t
+
+uint8_t decodePixels8(cv::Mat targetImage, int x, int y) {
+	uint8_t mask = 1;
+
+	uint8_t n=0;
+	for (int i = 0; i < 8; i++) {
+		n += ((targetImage.at<uchar>(x + i, y) & mask) << i);
+	}
+	return n;
 };
 
-uint8_t decodePixels(cv::Mat targetImage, int x, int y) {
-	uint8_t mask = 1;
-	//uint8_t n = (arr[0] & mask) + ((arr[1] & mask) << 1) + ((arr[2] & mask) << 2) + ((arr[3] & mask) << 3) + ((arr[4] & mask) << 4) + ((arr[5] & mask) << 5) + ((arr[6] & mask) << 6) + ((arr[7] & mask) << 7);  // make sure all bits are zero
-	uint8_t n = (targetImage.at<uchar>(x, y) & mask) +
-				((targetImage.at<uchar>(x+1, y) & mask) << 1) +
-				((targetImage.at<uchar>(x + 2, y) & mask) << 2) +
-				((targetImage.at<uchar>(x + 3, y) & mask) << 3) +
-				((targetImage.at<uchar>(x + 4, y) & mask) << 4) +
-				((targetImage.at<uchar>(x + 5, y) & mask) << 5) +
-				((targetImage.at<uchar>(x + 6, y) & mask) << 6) +
-				((targetImage.at<uchar>(x + 7, y) & mask) << 7);
+uint32_t decodePixels32(cv::Mat targetImage, int x, int y) {
+	uint32_t mask = 1;
+
+	uint32_t n = 0;
+	for (int i = 0; i < 32; i++) {
+		n += ((targetImage.at<uchar>(x + i, y) & mask) << i);
+	}
+
 	return n;
 };
 
@@ -41,7 +57,7 @@ void encodeName(std::string name, cv::Mat targetImage, int x, int y) {
 
 	for (int i = 0; i < 2; i++) {  // I shifts the row
 		for(int j = 0; j < 128; j++)
-		encodePixels(nameAsChar[j+(128*i)], targetImage, x + (j*8), y+i);
+		encodePixels8(nameAsChar[j+(128*i)], targetImage, x + (j*8), y+i);
 	}
 }
 
@@ -50,7 +66,7 @@ std::string decodeName(cv::Mat targetImage, int x, int y) {
 
 	for (int i = 0; i < 2; i++) {  // I shifts the row
 		for (int j = 0; j < 128; j++)
-			name += decodePixels(targetImage, x + (j * 8), y + i);
+			name += decodePixels8(targetImage, x + (j * 8), y + i);
 	}
 	return name;
 }
@@ -62,8 +78,9 @@ cv::Mat hide_data::encode(PatientMedicalData record, cv::Mat targetImage) {
 	// encode name
 	encodeName(record.name(), hiddenImage, 0, 0);
 	// encode gender
-	encodePixels(record.gender(), hiddenImage, 0, 2); //have to skip a row because name takes up two
-
+	encodePixels8(record.gender(), hiddenImage, 0, 2); //have to skip a row because name takes up two
+	encodePixels8(record.age(), hiddenImage, 0, 3);
+	encodePixels32(record.social(), hiddenImage, 0, 4);
 	return hiddenImage;
 }
 
@@ -74,6 +91,8 @@ PatientMedicalData hide_data::decode(cv::Mat hiddenImage) {
 	std::string hiddenName;
 	hiddenName = decodeName(hiddenImage, 0, 0);
 	patient.name(hiddenName);
-	patient.gender((char)decodePixels(hiddenImage, 0, 2));
+	patient.gender((char)decodePixels8(hiddenImage, 0, 2));
+	patient.age(decodePixels8(hiddenImage, 0, 3));
+	patient.social(decodePixels32(hiddenImage, 0, 4));
 	return patient;
 }

@@ -180,10 +180,13 @@ int HideDataConsoleApp(int argc, char** argv)
 
 void HideDataTests() {
     cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
-    PatientMedicalData patient = PatientMedicalData("John Doe", (char)"M", 22, 0);
+    PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230);
     cv::Mat image = hide_data::encode(patient, targetImage);
     PatientMedicalData decodedPatient = hide_data::decode(image);
     cout <<"Patient name: " << decodedPatient.name() << "\n";
+    cout << "Patient gender: " << (char)decodedPatient.gender() << "\n";
+    cout << "Patient age: " << (unsigned)decodedPatient.age() << "\n";
+    cout << "Patient social: " << decodedPatient.social() << "\n";
     decodedPatient.validate();
     if (!image.empty()) {
         cv::imshow("", image);
