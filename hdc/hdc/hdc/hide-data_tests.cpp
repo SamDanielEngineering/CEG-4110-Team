@@ -39,7 +39,7 @@ void hide_data_tests::checks(PatientMedicalData record) {
             << "\n";
     }
 
-    if (!record.gender().empty())
+    if (!record.gender() == (char)"")
     {
         cout << "gender: " << record.gender() << "\n";
     }

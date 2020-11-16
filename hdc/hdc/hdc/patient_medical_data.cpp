@@ -5,7 +5,7 @@ PatientMedicalData::PatientMedicalData() {
     this->clear();
 }
 
-PatientMedicalData::PatientMedicalData(std::string name, std::string gender, uint8_t age, uint32_t social) {
+PatientMedicalData::PatientMedicalData(std::string name, char gender, uint8_t age, uint32_t social) {
     this->clear();
 
     this->name(name);
@@ -14,7 +14,7 @@ PatientMedicalData::PatientMedicalData(std::string name, std::string gender, uin
     this->social(social);
 };
 
-PatientMedicalData::PatientMedicalData(std::string name, std::string gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, std::vector<uint8_t> currentHealthConditions, std::vector<uint8_t> healthHistory) {
+PatientMedicalData::PatientMedicalData(std::string name, char gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, std::vector<uint8_t> currentHealthConditions, std::vector<uint8_t> healthHistory) {
     this->name(name);
     this->gender(gender);
     this->age(age);
@@ -35,7 +35,7 @@ bool PatientMedicalData::validate() {
     {
         printf("Error: Name value is empty.\n");
         val = false;
-    }else if(gender().empty()) //check gender
+    }else if(gender() == (char)"") //check gender
     {
         printf("Error: Gender value is empty.\n");
         val = false;
@@ -54,7 +54,7 @@ bool PatientMedicalData::validate() {
 
 void PatientMedicalData::clear() {
     _name = "";
-    _gender = "";
+    _gender = (char)"";
     _age = std::numeric_limits<uint8_t>::max();
     _temperature = std::numeric_limits<uint8_t>::max();
     _social = std::numeric_limits<uint32_t>::max();
@@ -68,8 +68,8 @@ void PatientMedicalData::clear() {
 
 std::string PatientMedicalData::name() { return _name; };
 void PatientMedicalData::name(std::string newName) { _name = newName; };
-std::string PatientMedicalData::gender() { return _gender; };
-void PatientMedicalData::gender(std::string newGender) { _gender = newGender; };
+char PatientMedicalData::gender() { return _gender; };
+void PatientMedicalData::gender(char newGender) { _gender = newGender; };
 uint8_t PatientMedicalData::age() { return _age; };
 void PatientMedicalData::age(uint8_t newAge) { _age = newAge; };
 uint8_t PatientMedicalData::temperature() { return _temperature; };

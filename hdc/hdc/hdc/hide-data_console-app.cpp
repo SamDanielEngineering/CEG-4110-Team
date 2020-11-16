@@ -100,7 +100,7 @@ string runOption(string str)
         record.social(stoi(value, nullptr, 10));
         break;
     case Option::gender:
-        record.gender(value);
+        record.gender(value[0]);
         break;
     case Option::temperature:
         record.temperature(stoi(value, nullptr, 10));
@@ -180,10 +180,10 @@ int HideDataConsoleApp(int argc, char** argv)
 
 void HideDataTests() {
     cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
-    PatientMedicalData patient = PatientMedicalData("First Last", "M", 22, 0);
+    PatientMedicalData patient = PatientMedicalData("John Doe", (char)"M", 22, 0);
     cv::Mat image = hide_data::encode(patient, targetImage);
     PatientMedicalData decodedPatient = hide_data::decode(image);
-    cout << decodedPatient.name() << "\n";
+    cout <<"Patient name: " << decodedPatient.name() << "\n";
     decodedPatient.validate();
     if (!image.empty()) {
         cv::imshow("", image);
