@@ -80,7 +80,12 @@ cv::Mat hide_data::encode(PatientMedicalData record, cv::Mat targetImage) {
 	// encode gender
 	encodePixels8(record.gender(), hiddenImage, 0, 2); //have to skip a row because name takes up two
 	encodePixels8(record.age(), hiddenImage, 0, 3);
-	encodePixels32(record.social(), hiddenImage, 0, 4);
+	encodePixels8(record.temperature(), hiddenImage, 0, 4);
+	encodePixels8(record.respirationRate(), hiddenImage, 0, 5);
+	encodePixels8(record.bloodPressureSystolic(), hiddenImage, 0, 6);
+	encodePixels8(record.bloodPressureDiastolic(), hiddenImage, 0, 7);
+	encodePixels8(record.pulseRate(), hiddenImage, 0, 8);
+	encodePixels32(record.social(), hiddenImage, 0, 9);
 	return hiddenImage;
 }
 
@@ -93,6 +98,11 @@ PatientMedicalData hide_data::decode(cv::Mat hiddenImage) {
 	patient.name(hiddenName);
 	patient.gender((char)decodePixels8(hiddenImage, 0, 2));
 	patient.age(decodePixels8(hiddenImage, 0, 3));
-	patient.social(decodePixels32(hiddenImage, 0, 4));
+	patient.temperature(decodePixels8(hiddenImage, 0, 4));
+	patient.respirationRate(decodePixels8(hiddenImage, 0, 5));
+	patient.bloodPressureSystolic(decodePixels8(hiddenImage, 0, 6));
+	patient.bloodPressureDiastolic(decodePixels8(hiddenImage, 0, 7));
+	patient.pulseRate(decodePixels8(hiddenImage, 0, 8));
+	patient.social(decodePixels32(hiddenImage, 0, 9));
 	return patient;
 }

@@ -180,13 +180,20 @@ int HideDataConsoleApp(int argc, char** argv)
 
 void HideDataTests() {
     cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
-    PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230);
+    std::vector<uint8_t> healthHistory;
+    std::vector<uint8_t> healthConitions;
+    PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230,90,100,100,100,11, healthHistory, healthConitions);
     cv::Mat image = hide_data::encode(patient, targetImage);
     PatientMedicalData decodedPatient = hide_data::decode(image);
     cout <<"Patient name: " << decodedPatient.name() << "\n";
     cout << "Patient gender: " << (char)decodedPatient.gender() << "\n";
     cout << "Patient age: " << (unsigned)decodedPatient.age() << "\n";
-    cout << "Patient social: " << decodedPatient.social() << "\n";
+    cout << "Patient social: " << (unsigned)decodedPatient.social() << "\n";
+    cout << "Patient temperature: " << (unsigned)decodedPatient.temperature() << "\n";
+    cout << "Patient respiration rate: " << (unsigned)decodedPatient.respirationRate() << "\n";
+    cout << "Patient blood pressure systolic: " << (unsigned)decodedPatient.bloodPressureSystolic() << "\n";
+    cout << "Patient blood pressure diastolic: " << (unsigned)decodedPatient.bloodPressureDiastolic() << "\n";
+    cout << "Patient pulse rate: " << (unsigned)decodedPatient.pulseRate() << "\n";
     decodedPatient.validate();
     if (!image.empty()) {
         cv::imshow("", image);
