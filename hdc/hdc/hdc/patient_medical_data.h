@@ -8,15 +8,14 @@
 class PatientMedicalData
 {
 private:
-	std::string _name;
-	unsigned char _gender;
+	std::string _name, _healthHistory;
+	unsigned char _gender, _currentHealthCondition;
 	uint8_t _age, _temperature, _respirationRate, _bloodPressureSystolic, _bloodPressureDiastolic, _pulseRate;
 	uint32_t _social;
-	std::vector<uint8_t> _currentHealthConditions, _healthHistory;
 public:
 	PatientMedicalData();
 	PatientMedicalData(std::string name, unsigned char gender, uint8_t age, uint32_t social);
-	PatientMedicalData(std::string name, unsigned char gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, std::vector<uint8_t> currentHealthConditions, std::vector<uint8_t> healthHistory);
+	PatientMedicalData(std::string name, unsigned char gender, uint8_t age, uint32_t social, uint8_t temperature, uint8_t respirationRate, uint8_t bloodPressureSystolic, uint8_t bloodPressureDiastolic, uint8_t pulseRate, unsigned char currentHealthCondition, std::string healthHistory);
 	std::string name();
 	void name(std::string newName);
 	unsigned char gender();
@@ -35,10 +34,10 @@ public:
 	void pulseRate(uint8_t newPulseRate);
 	uint32_t social();
 	void social(uint32_t newSocial);
-	std::vector<uint8_t> currentHealthConditions();
-	void currentHealthConditions(std::vector<uint8_t> NewCurrentHealthConditions);
-	std::vector<uint8_t> healthHistory();
-	void healthHistory(std::vector<uint8_t> newHealthHistory);
+	unsigned char currentHealthCondition();
+	void currentHealthCondition(unsigned char charNewCurrentHealthConditions);
+	std::string healthHistory();
+	void healthHistory(std::string newHealthHistory);
 	bool validate();
 	void clear();
 };

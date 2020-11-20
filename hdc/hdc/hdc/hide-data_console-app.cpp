@@ -25,7 +25,7 @@ enum class Option
     bloodPressureSystolic,
     bloodPressureDiastolic,
     healthHistory,
-    currentHealthConditions,
+    currentHealthCondition,
     undefined
 };
 
@@ -54,7 +54,7 @@ Option getOption(string str)
     if (str == "-hh")
         return Option::healthHistory;
     if (str == "-hc")
-        return Option::currentHealthConditions;
+        return Option::currentHealthCondition;
     return Option::undefined;
 }
 
@@ -117,11 +117,11 @@ string runOption(string str)
     case Option::bloodPressureDiastolic: //
         record.bloodPressureDiastolic(stoi(value, nullptr, 10));
         break;
-    case Option::healthHistory:
-        record.healthHistory(getHistory(value));
+    case Option::healthHistory: //
+        record.healthHistory(value);
         break;
-    case Option::currentHealthConditions:
-        record.currentHealthConditions(getHistory(value));
+    case Option::currentHealthCondition: //
+        record.currentHealthCondition(value[0]);
         break;
     default:
         cout << "not valid option:\n";
@@ -180,13 +180,8 @@ int HideDataConsoleApp(int argc, char** argv)
 
 void HideDataTests() {
     cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
-    std::vector<uint8_t> healthHistory;
-    healthHistory.push_back(10);
-    healthHistory.push_back(20);
-    std::vector<uint8_t>healthConitions;
-    healthConitions.push_back(30);
-    healthConitions.push_back(40);
-    PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230,90,100,100,100,11, healthHistory, healthConitions);
+
+    PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230,90,100,110,120,130,'a',"aGht");
     cv::Mat image = hide_data::encode(patient, targetImage);
     PatientMedicalData decodedPatient = hide_data::decode(image);
     cout <<"Patient name: " << decodedPatient.name() << "\n";
@@ -198,14 +193,9 @@ void HideDataTests() {
     cout << "Patient blood pressure systolic: " << (unsigned)decodedPatient.bloodPressureSystolic() << "\n";
     cout << "Patient blood pressure diastolic: " << (unsigned)decodedPatient.bloodPressureDiastolic() << "\n";
     cout << "Patient pulse rate: " << (unsigned)decodedPatient.pulseRate() << "\n";
-    cout << "Patient health history: ";
-    for (int i = 0; i < 10; i++) {
-        if (record.currentHealthConditions().size() > i) {
-            cout << (unsigned)decodedPatient.currentHealthConditions().at(i);
-        }
-        else {
-        }
-    }
+    cout << "Patient health current health condition: " << decodedPatient.currentHealthCondition() << "\n";
+    cout << "Patient health history: " << decodedPatient.healthHistory() << "\n";
+
     decodedPatient.validate();
     if (!image.empty()) {
         cv::imshow("", image);

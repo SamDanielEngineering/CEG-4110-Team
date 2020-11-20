@@ -86,16 +86,9 @@ cv::Mat hide_data::encode(PatientMedicalData record, cv::Mat targetImage) {
 	encodePixels8(record.bloodPressureDiastolic(), hiddenImage, 0, 7);
 	encodePixels8(record.pulseRate(), hiddenImage, 0, 8);
 	encodePixels32(record.social(), hiddenImage, 0, 9);
-	for (int i=0; i < 10; i++) {
-		if (record.currentHealthConditions().size() > 0) {
-				encodePixels8(record.currentHealthConditions().back(), hiddenImage, 0, 10 + i);
-				record.currentHealthConditions().pop_back(); // remove back item
-		}
-		else {
-			encodePixels8(255, hiddenImage, 0, 10 + i);  // 255= NA here 
-		}
-	}
-
+	encodePixels8(record.currentHealthCondition(), hiddenImage, 0, 10); //have to skip a row because name takes up two
+	encodeName(record.healthHistory(), hiddenImage, 0, 11);
+	// make sure to skip row since name takes two
 	return hiddenImage;
 }
 
@@ -114,11 +107,8 @@ PatientMedicalData hide_data::decode(cv::Mat hiddenImage) {
 	patient.bloodPressureDiastolic(decodePixels8(hiddenImage, 0, 7));
 	patient.pulseRate(decodePixels8(hiddenImage, 0, 8));
 	patient.social(decodePixels32(hiddenImage, 0, 9));
-	for (int i=0; i < 10; i++) {
-		uint8_t condition =  decodePixels8(hiddenImage, 0, 10 + i);
-		if (condition != 255) {
-			patient.currentHealthConditions().push_back(condition);
-		}
-	}
+	patient.currentHealthCondition((char)decodePixels8(hiddenImage, 0, 10));
+	patient.healthHistory(decodeName(hiddenImage, 0, 11));
+	//make sure to skip row since h
 	return patient;
 }

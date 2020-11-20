@@ -39,7 +39,7 @@ void hide_data_tests::checks(PatientMedicalData record) {
             << "\n";
     }
 
-    if (!record.gender() == (char)"")
+    if (record.gender() != (char)255)
     {
         cout << "gender: " << record.gender() << "\n";
     }
@@ -99,33 +99,23 @@ void hide_data_tests::checks(PatientMedicalData record) {
             << "\n";
     }
 
-    if (size(record.healthHistory()) != 0)
+    if (record.currentHealthCondition() != (unsigned char)255)
     {
-        cout << "healthHistory: ";
-        for (auto i : record.healthHistory()) {
-            std::cout << (unsigned)i << ' ';
-        }
+        cout << "healthCondition: " << record.currentHealthCondition() << "\n";
+    }
+    else
+    {
+        cout << "healthCondition not set"
+            << "\n";
+    }
 
-        cout << endl;
+    if (record.healthHistory() != "")
+    {
+        cout << "healthHistory: " << record.healthHistory() << "\n";
     }
     else
     {
         cout << "healthHistory not set"
-            << "\n";
-    }
-
-    if (size(record.currentHealthConditions()) != 0)
-    {
-        cout << "currentHealthConditions: ";
-        for (auto i : record.currentHealthConditions()) {
-            std::cout << (unsigned)i << ' ';
-        }
-        cout << endl;
-
-    }
-    else
-    {
-        cout << "currentHealthConditions not set"
             << "\n";
     }
 }
