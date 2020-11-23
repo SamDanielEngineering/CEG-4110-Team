@@ -180,7 +180,6 @@ int HideDataConsoleApp(int argc, char** argv)
 
 void HideDataTests() {
     cv::Mat targetImage = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
-
     PatientMedicalData patient = PatientMedicalData("John Doe", 'M', 22, 3223230,90,100,110,120,130,'a',"aGht");
     cv::Mat image = hide_data::encode(patient, targetImage);
     PatientMedicalData decodedPatient = hide_data::decode(image);
@@ -202,6 +201,30 @@ void HideDataTests() {
     }
     else { cout << "Image not found"; }
     int k = cv::waitKey(0); // Wait for any keystroke in the window    
+
+
+    cv::Mat targetImage2 = cv::imread("../image.jpg", cv::IMREAD_GRAYSCALE);
+    PatientMedicalData patient2 = PatientMedicalData("John Doe", 'M', 22, 3223230);
+    cv::Mat image2 = hide_data::encode(patient2, targetImage2);
+    PatientMedicalData decodedPatient2 = hide_data::decode(image2);
+    cout << "Patient2 name: " << decodedPatient2.name() << "\n";
+    cout << "Patient2 gender: " << (char)decodedPatient2.gender() << "\n";
+    cout << "Patient2 age: " << (unsigned)decodedPatient2.age() << "\n";
+    cout << "Patient2 social: " << (unsigned)decodedPatient2.social() << "\n";
+    cout << "Patient2 temperature: " << (unsigned)decodedPatient2.temperature() << "\n";
+    cout << "Patient2 respiration rate: " << (unsigned)decodedPatient2.respirationRate() << "\n";
+    cout << "Patient2 blood pressure systolic: " << (unsigned)decodedPatient2.bloodPressureSystolic() << "\n";
+    cout << "Patient2 blood pressure diastolic: " << (unsigned)decodedPatient2.bloodPressureDiastolic() << "\n";
+    cout << "Patient2 pulse rate: " << (unsigned)decodedPatient2.pulseRate() << "\n";
+    cout << "Patient2 health current health condition: " << decodedPatient2.currentHealthCondition() << "\n";
+    cout << "Patient2 health history: " << decodedPatient2.healthHistory() << "\n";
+
+    decodedPatient2.validate();
+    if (!image2.empty()) {
+        cv::imshow("", image2);
+    }
+    else { cout << "Image not found"; }
+    int j = cv::waitKey(0); // Wait for any keystroke in the window    
 }
 
 int main(int argc, char** argv)

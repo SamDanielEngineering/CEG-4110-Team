@@ -7,7 +7,6 @@ PatientMedicalData::PatientMedicalData() {
 
 PatientMedicalData::PatientMedicalData(std::string name, unsigned char gender, uint8_t age, uint32_t social) {
     this->clear();
-
     this->name(name);
     this->gender(gender);
     this->age(age);
